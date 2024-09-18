@@ -1,0 +1,35 @@
+﻿
+<div ng-if="alert" class="alert alert-{{alert.type}}">{{alert.message}}</div>
+
+<h2 class="mb-4">Lista de Tareas</h2>
+
+<!-- Loader -->
+<div ng-if="isLoading" class="d-flex justify-content-center align-items-center">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<table class="table table-striped" ng-if="!isLoading">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Título</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Fecha creación</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="tarea in tareas">
+            <td>{{ tarea.Titulo }}</td>
+            <td>{{ tarea.Descripcion }}</td>
+            <td>{{ tarea.Estado ? 'Completada' : 'Pendiente' }}</td>
+            <td>{{ tarea.FechaCreacion }}</td>
+            <td>
+                <a href="#!/editar/{{ tarea.Id }}" class="btn btn-sm btn-warning">Editar</a>
+                <button ng-click="eliminarTarea(tarea.Id)" class="btn btn-sm btn-danger">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
